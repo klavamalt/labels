@@ -21,3 +21,68 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 
 /* Add 10px of space between the photograph and case panel without resizing. */
 @media(min-width:1024px){.fc-main>.fc-paper{left:-5px}.fc-main>.fc-panel{position:relative;left:5px}}
+
+/* Figma mobile case layouts: intrinsic paper size and stacked editorial sections. */
+.fc-editorial-photo{position:relative;overflow:hidden}
+.fc-editorial-photo>img{display:block;width:100%;height:100%;object-fit:inherit;object-position:inherit}
+.fc-mobile-overlay{display:none!important}
+.fc-comparison-photo{width:100%;aspect-ratio:670/273;object-fit:contain;margin:20px 0}
+.fc-reason-copy>div,.fc-caption,.fc-stats>div{min-width:0}
+@media(max-width:1023px){
+ .fc-main{display:flex;flex-direction:column;gap:32px}
+ .fc-panel{display:contents}
+ .fc-heading{order:0}.fc-paper{order:1;flex:none;height:var(--fc-paper-height,calc((100vw - 40px) * .9529411765));min-height:0}
+ .fc-stage{order:2}.fc-bottom{order:3}
+ /* External SVG filters on transformed layers can blank the photo in mobile Safari. */
+ .fc-paper-art{filter:none}
+ .fc-reaction .fc-sticker-button{touch-action:none}
+ .fc-continuation{gap:96px}
+ .fc-section-heading{margin-bottom:32px}
+ .fc-section-heading>p{color:#444}
+ .fc-banner,.fc-content[data-case="2"] .fc-banner,.fc-comparison-photo{aspect-ratio:350/430;object-fit:cover}
+ .fc-mobile-overlay{display:block!important;position:absolute;inset:0;pointer-events:none}
+ .fc-captions{margin-top:24px;gap:32px}
+ .fc-caption h3{font-size:20px;line-height:26px;color:#444;margin-bottom:16px}
+ .fc-mobile-no-title h3{display:none}
+ .fc-stats{gap:24px}
+ .fc-stats strong{font-size:40px;line-height:48px;margin-bottom:12px}
+ .fc-stats p{font-size:14px;line-height:20px}
+ .fc-comparison{gap:48px}
+ .fc-comparison article{display:flex;flex-direction:column;gap:24px}
+ .fc-comparison .fc-caption h3{margin-bottom:12px}
+ .fc-comparison-photo{margin:0}
+ .fc-comparison .fc-stats{flex-direction:column;gap:16px}
+ .fc-comparison .fc-stats>div{display:flex;align-items:center;gap:12px}
+ .fc-comparison .fc-stats strong{width:40%;flex:none;margin:0}
+ .fc-comparison .fc-stats p{flex:1;min-width:0}
+ .fc-reasons{gap:32px}
+ .fc-reasons>article{grid-template-columns:120px minmax(0,1fr)}
+ .fc-reasons>article>img{width:120px;height:104px}
+ .fc-reason-copy h3{color:#444;margin-bottom:16px}
+ .fc-reasons .fc-reason-copy h3:before{content:counter(reason) '. '}
+ .fc-reasons{counter-reset:reason}.fc-reasons>article{counter-increment:reason}
+ .fc-central-reasons{gap:24px}
+ .fc-central-reasons>img{margin-bottom:8px}
+ .fc-central-reasons .fc-reason-copy{gap:16px}
+ .fc-central-reasons .fc-reason-copy>span{width:28px}
+ .fc-central-reasons .fc-reason-copy h3{margin-bottom:12px}
+ .fc-result-cell{width:112px;max-width:40%}
+}
+@media(max-width:760px){
+ /* The active cover must allow the same native horizontal swipe as closed covers. */
+ .case-slot.active .case-pull,.case-pull,.catalog-canvas,.rack{touch-action:pan-x}
+ .catalog-canvas{-webkit-overflow-scrolling:touch}
+}
+@media(max-width:1023px){
+ .fc-content[data-phase="result"] .fc-main{gap:40px}
+ .fc-content[data-phase="result"] .fc-bottom{margin-top:16px}
+ .fc-content[data-phase="result"] .fc-result-grid{margin-top:32px}
+ .fc-continuation{margin-top:40px}
+}
+
+/* Let the desktop composition fill a wider screen while preserving its proportions. */
+@media(min-width:1024px){
+ .fc-content,.first-case>header{max-width:1600px}
+ .fc-continuation{margin-top:94px}
+}
+@media(max-width:1023px){.fc-continuation{margin-top:24px}}
