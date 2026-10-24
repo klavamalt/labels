@@ -1,0 +1,1 @@
+function fitAbout(){document.documentElement.style.setProperty('--scale',Math.min(innerWidth/1440,innerHeight/740));document.documentElement.style.setProperty('--mobile-scale',Math.min(innerWidth/390,innerHeight/780));}window.addEventListener('resize',fitAbout);fitAbout();
