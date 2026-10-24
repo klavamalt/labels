@@ -1,4 +1,6 @@
 (()=>{'use strict';
+function fitProjectGrid(){document.documentElement.style.setProperty('--about-scale',Math.min(innerWidth-80,1440)/1380);}
+window.addEventListener('resize',fitProjectGrid);fitProjectGrid();
 const labels=['Поиграем в прятки?','Хочешь — пиши!','Тебе показалось','Смерть в нищете','Незваные гости','Отпуск без тебя'];
 const menu=document.createElement('section');menu.className='project-menu';menu.id='project-menu';menu.hidden=true;menu.setAttribute('role','dialog');menu.setAttribute('aria-modal','true');menu.setAttribute('aria-label','Меню спецпроекта');menu.innerHTML=`<div class="menu-header"><a href="cases.html">Кейсы</a><a class="logo-home" href="index.html" aria-label="На главную"><img class="logo" src="assets/b12a2.svg" alt="Сердце"></a><button class="menu-close" aria-label="Закрыть меню"><img src="assets/14524.svg" alt=""></button></div><nav class="menu-sections"><a href="index.html">Главная</a><a href="about.html">О проекте</a></nav><nav class="menu-cases" aria-label="Истории"><p><a href="cases.html">Кейсы</a></p>${labels.map((t,i)=>`<a href="cases.html#case-${i+1}">${t}</a>`).join('')}</nav><button class="share">Поделиться историей</button>`;document.body.append(menu);
 let origin,previous=[];

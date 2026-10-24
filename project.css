@@ -19,8 +19,8 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 /* Keep the mascot centered while making its entire area a home link. */
 .logo-home{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}.logo-home .logo{position:static;left:auto;transform:none;display:block}
 
-/* Add 10px of space between the photograph and case panel without resizing. */
-@media(min-width:1024px){.fc-main>.fc-paper{left:-5px}.fc-main>.fc-panel{position:relative;left:5px}}
+/* Use the actual grid gap so both outer edges align with navigation. */
+@media(min-width:1024px){.fc-main{width:1372px;gap:42px}.fc-main>.fc-paper{left:0}.fc-main>.fc-panel{position:relative;left:0}}
 
 /* Figma mobile case layouts: intrinsic paper size and stacked editorial sections. */
 .fc-editorial-photo{position:relative;overflow:hidden}
@@ -83,6 +83,52 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 /* Let the desktop composition fill a wider screen while preserving its proportions. */
 @media(min-width:1024px){
  .fc-content,.first-case>header{max-width:1440px}
- .fc-continuation{margin-top:78px}
+ .fc-continuation{margin-top:68px;gap:160px}
 }
 @media(max-width:1023px){.fc-continuation{margin-top:24px}}
+
+/* All pages share the case navigation grid. */
+@media(min-width:1024px){
+ .screen>header,.catalog>header,.first-case>header{width:calc(100% - 80px);max-width:1440px;height:50px;font-size:18px;line-height:22px}
+ .screen>header,.catalog>header{left:50%;right:auto;top:20px;transform:translateX(-50%);margin:0}
+ .first-case>header{left:auto;right:auto;top:auto;transform:none;margin:20px auto 0}
+ .screen>header .logo,.catalog>header .logo,.first-case>header .logo{width:56px;height:50px}
+ .screen>header .share,.catalog>header .share,.first-case>header .share{font-size:16px;min-height:48px;padding:14px 24px}
+ .fc-content{margin-top:69px}
+ .catalog>.catalog-heading{left:50%;right:auto;top:158px;transform:translateX(-50%);width:calc(100% - 80px);max-width:1440px}
+ .catalog-canvas{top:calc(50% + 8px)}
+ .intro .artboard{transform:translateY(8px) scale(var(--scale,1))}
+ .about .artboard,.about-page .about .artboard{position:absolute;left:50%;top:219px;width:1380px;height:600px;transform:translateX(-50%) scale(var(--about-scale,1));transform-origin:top center}
+ .about .about-copy{left:0;top:0}.about .instruction{left:583px;top:0}
+ .about-page .about{min-height:720px}
+}
+@media(max-width:1023px){
+ .screen>header,.catalog>header,.first-case>header{left:50%;right:auto;top:0;transform:translateX(-50%);width:calc(100% - 40px);max-width:700px;height:72px;margin:0}
+ .first-case>header{left:auto;top:auto;transform:none;margin:0 auto}
+ .fc-content{margin-top:32px}
+}
+@media(max-width:760px){
+ .catalog>.catalog-heading{top:104px}.catalog-canvas{top:232px}
+ .intro .artboard{transform:translateX(-50%) translateY(8px) scale(var(--mobile-scene-scale,1))}
+ .about .artboard,.about-page .about .artboard{padding-top:32px}
+}
+.case-slot[hidden]{display:none!important}
+.catalog-complete{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:24px;color:#444}
+.catalog-complete[hidden]{display:none}.catalog-complete h2{font:42px/1.2 Livret,Georgia,serif}.catalog-complete a{padding:14px 24px;background:#444;color:#fff}
+@media(min-width:761px) and (max-width:1023px){
+ .about .artboard,.about-page .about .artboard{position:relative;top:auto;left:auto;width:100%;height:auto;min-height:0;transform:none;padding:32px 20px 40px;display:flex;flex-direction:column;gap:40px;overflow:visible}
+ .about.screen{display:block;padding-top:72px}.about-page .about{height:auto;min-height:878px;display:block}.about-copy{display:contents;position:static;width:auto}
+ .about h2{font-size:32px;line-height:40px;white-space:normal}.descriptor{font-size:16px;line-height:22px;margin-top:-24px}.descriptor br{display:none}
+ .instruction{position:relative;left:auto;top:auto;width:100%;height:auto;aspect-ratio:797/487.056;order:2}.instruction .itext{font-size:clamp(6px,1.79vw,12px)}
+ .about-copy ol{order:3;width:100%;margin:0}.about-copy li{gap:16px;margin-bottom:24px}.about-copy li+li{padding-top:24px;border-top:1px solid #ddd}.about-copy li:last-child{margin-bottom:0}
+ .about-copy li>span{font-size:32px;line-height:40px;width:24px;flex:none}.about-copy li h3{font-size:14px;line-height:20px;margin-bottom:8px}.about-copy li p{font-size:16px;line-height:22px;color:#444}
+ .about-copy>.button{order:4;width:100%;font-size:16px;line-height:22px;padding:14px 16px;min-height:52px}.about .artboard>h2,.about-copy h2{order:0}.about-copy .descriptor{order:1}.about .artboard{align-items:stretch}.about-page main{height:auto}
+}
+@media(max-width:1023px){.about .artboard,.about-page .about .artboard{width:calc(100% - 40px);max-width:700px;margin:0 auto;padding:32px 0 40px}}
+
+@media(min-width:1024px){.about-copy>.button{margin-top:10px}}
+.fc-back{transition:background-color .18s ease,color .18s ease}
+@media(hover:hover){.fc-back:not(:disabled):hover{background:#aaa;color:#fff}}
+.fc-back:not(:disabled):focus-visible{background:#aaa;color:#fff}
+
+@media(min-width:375px) and (max-width:1023px){.fc-content[data-phase="detail"] .fc-actions{grid-template-columns:minmax(0,1fr) auto}}
