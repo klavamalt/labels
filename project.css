@@ -140,3 +140,11 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 
 .menu-cases>p>a{font-size:20px;line-height:26px;color:#444}
 .menu-cases>a{color:#9e9e9e}
+
+/* Follow the visible mobile viewport as browser controls expand or collapse. */
+@media(max-width:1023px){
+ #story .stage{height:100vh;height:100dvh}
+ #story .skip{display:none}
+ .about-copy>.button{margin-top:20px}
+}
+html.intro-covered,html.intro-covered body{background:#f6ff00}

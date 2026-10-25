@@ -7,6 +7,11 @@ function size(){width=stage.clientWidth;height=stage.clientHeight;const mobile=w
 // Intersect the viewport with x + y <= limit. The crease travels from bottom-right to top-left.
 function cut(limit){let poly=[[0,0],[width,0],[width,height],[0,height]],out=[];for(let i=0;i<4;i++){const a=poly[i],b=poly[(i+1)%4],da=a[0]+a[1]-limit,db=b[0]+b[1]-limit;if(da<=0)out.push(a);if((da<0&&db>0)||(da>0&&db<0)){const t=da/(da-db);out.push([mix(a[0],b[0],t),mix(a[1],b[1],t)]);}}return out;}
 function render(){raf=0;if(matchMedia('(prefers-reduced-motion:reduce)').matches){if(width<=760){location.replace('about.html');return;}intro.inert=true;intro.style.visibility='hidden';paper.style.visibility='hidden';document.querySelector('.about').inert=false;document.querySelector('.about').style.visibility='visible';document.querySelector('.skip').style.visibility='hidden';return;}const p=clamp(-story.getBoundingClientRect().top/(story.offsetHeight-height));const cover=clamp((p-.44)/.17),peel=clamp((p-.61)/.35);
+// Match browser overscroll and toolbar color to the fully covering yellow paper.
+const covered=width<=1023&&cover>=.95&&peel<.02;
+document.documentElement.classList.toggle('intro-covered',covered);
+const theme=document.querySelector('meta[name="theme-color"]'),themeColor=covered?'#f6ff00':'#ffffff';
+if(theme&&theme.content!==themeColor)theme.content=themeColor;
 labels.forEach((l,i)=>{const t=clamp((p-(.055+i*.037))/.033),e=1-Math.pow(1-t,3);l.n.style.opacity=t===0?0:1;l.n.style.transform=`translate(${(1-e)*25}px,${-(1-e)*65}px) rotate(${l.angle+(1-e)*14}deg) scale(${mix(1.15,1,e)})`;});
 // Expand the original label itself: no duplicate overlay or replacement rectangle.
 const l=labels[8],e=smooth(cover),zoom=Math.exp(Math.log(Math.max(width/(l.w*scale),height/((width<=760?34:58)*scale))*2.9)*e);
