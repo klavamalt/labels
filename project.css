@@ -85,7 +85,7 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
  .fc-content,.first-case>header{max-width:1440px}
  .fc-continuation{margin-top:68px;gap:160px}
 }
-@media(max-width:1023px){.fc-continuation{margin-top:24px}}
+@media(max-width:1023px){.fc-continuation{margin-top:54px}}
 
 /* All pages share the case navigation grid. */
 @media(min-width:1024px){
@@ -137,3 +137,6 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 @media(max-width:1023px){.fc-content[data-phase="result"]{margin-bottom:64px}}
 
 .fc-section-heading>p{text-align:left}
+
+.menu-cases>p>a{font-size:20px;line-height:26px;color:#444}
+.menu-cases>a{color:#9e9e9e}
