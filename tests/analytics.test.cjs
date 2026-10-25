@@ -3,8 +3,8 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const source = fs.readFileSync(require('node:path').join(__dirname, '../analytics.js'), 'utf8');
-function setup(ym) {
-  const window = { ym };
+function setup(ym, gtag) {
+  const window = { ym, gtag };
   vm.runInNewContext(source, { window });
   return window.ProjectAnalytics;
 }
@@ -32,4 +32,19 @@ test('unavailable or failing analytics never blocks the story', () => {
     const attempt = setup(ym).story(1);
     assert.doesNotThrow(() => { attempt.start(); attempt.complete(); });
   }
+});
+
+test('Google goals are deduplicated and independent of Yandex failures', () => {
+  const calls = [];
+  const analytics = setup(() => { throw new Error('blocked'); }, (...args) => calls.push(args));
+  const attempt = analytics.story(3);
+  attempt.complete(); attempt.start(); attempt.start(); attempt.complete(); attempt.complete();
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
+    ['event', 'story_start', { case_id: 3 }],
+    ['event', 'story_complete', { case_id: 3 }]
+  ]);
+  assert.doesNotThrow(() => {
+    const failing = setup(undefined, () => { throw new Error('blocked'); }).story(1);
+    failing.start(); failing.complete();
+  });
 });
