@@ -12,6 +12,11 @@
           window.ym(counterId, 'reachGoal', name, { case_id: caseId });
         }
       } catch {}
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', name, { case_id: caseId });
+        }
+      } catch {}
     };
     return {
       start() {
