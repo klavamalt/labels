@@ -1,3 +1,4 @@
+document.querySelectorAll('.skip').forEach(button=>button.remove());
 const story=document.querySelector('#story'), stage=document.querySelector('.stage'), intro=document.querySelector('.intro'), paper=document.querySelector('.paper'), face=document.querySelector('.paper-face'), back=document.querySelector('.fold-back'), shadow=document.querySelector('.fold-shadow');
 const data=[['Мелочный',147,365,279,10],['Расчётливая',1088,377,301,-4],['Жадина',472,304,252,-5],['Жмот',827,306,227,0],['Скупердяй',86,509,282,-10],['Халявщица',757,437,288,-10],['Нищеброд',408,547,280,5],['Меркантильная',982,528,336,8],['Пополамщик',469,394,307,-8]];
 const labels=data.map(([title,x,y,w,angle])=>{let n=document.createElement('div');n.className='label';const caption=document.createElement('span');caption.textContent=title;n.append(caption);n.style.cssText=`left:${x}px;top:${y}px;width:${w}px`;document.querySelector('.labels').append(n);return {n,x,y,w,angle};});

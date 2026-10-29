@@ -156,3 +156,6 @@ html.intro-covered,html.intro-covered body{background:#f6ff00}
 @media(min-width:1024px) and (hover:hover){
  header nav>a:hover{background-color:var(--brand);color:var(--ink)}
 }
+
+/* Keep the removed animation-skip control hidden at every breakpoint. */
+.skip{display:none!important}
