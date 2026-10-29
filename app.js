@@ -26,7 +26,7 @@ if(p>=.44){l.n.style.transform=`translate(${dx*e}px,${dy*e}px) rotate(${mix(l.an
 l.n.style.zIndex='20';l.n.querySelector('span').style.opacity=1-clamp(cover*4);
 document.querySelector('.intro .artboard').style.zIndex=p>=.44?'4':'';
 
-intro.style.visibility=p<.61?'visible':'hidden';intro.style.pointerEvents=p<.61?'auto':'none';paper.style.visibility=p>=.61&&peel<1?'visible':'hidden';
+intro.style.visibility=p<.61?'visible':'hidden';intro.style.pointerEvents=p<.61?'auto':'none';document.querySelector('.scroll-hint').style.opacity=1-clamp(p/.08);paper.style.visibility=p>=.61&&peel<1?'visible':'hidden';
 const limit=(width+height+2)*(1-smooth(peel)),pts=cut(limit);face.setAttribute('points',pts.map(v=>v.join(',')).join(' '));const a=limit>width?[width,limit-width]:[limit,0],b=limit>height?[limit-height,height]:[0,limit];if(peel>0&&peel<1){const band=Math.sin(Math.PI*peel)*Math.min(140,width*.15),d=`M ${a[0]} ${a[1]} L ${b[0]} ${b[1]} L ${b[0]-band} ${b[1]-band} Q ${(a[0]+b[0])/2-band*.25} ${(a[1]+b[1])/2-band*.25} ${a[0]} ${a[1]} Z`;back.setAttribute('d',d);const finish=document.querySelector('#back'),cx=(a[0]+b[0])/2,cy=(a[1]+b[1])/2;for(const [key,value] of Object.entries({x1:cx,y1:cy,x2:cx-band,y2:cy-band}))finish.setAttribute(key,value);shadow.setAttribute('d',d);}else{back.setAttribute('d','');shadow.setAttribute('d','');}
 if(width<=760&&peel>=1&&!matchMedia('(prefers-reduced-motion:reduce)').matches){location.replace('about.html');return;}
 // White explanation is already underneath the paper; it is exposed by the moving crease.
