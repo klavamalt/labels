@@ -143,8 +143,16 @@ body{font-size:16px;line-height:22px}header nav>a:nth-child(2),header>.share{dis
 
 /* Follow the visible mobile viewport as browser controls expand or collapse. */
 @media(max-width:1023px){
- #story .stage{height:100vh;height:100dvh}
+ #story .stage{height:100vh;height:var(--intro-viewport-height,100dvh)}
  #story .skip{display:none}
  .about-copy>.button{margin-top:20px}
 }
 html.intro-covered,html.intro-covered body{background:#f6ff00}
+
+@media(min-width:1024px){
+ header nav>a{transition:background-color .18s ease}
+ header nav>a:focus-visible{background-color:var(--brand);color:var(--ink)}
+}
+@media(min-width:1024px) and (hover:hover){
+ header nav>a:hover{background-color:var(--brand);color:var(--ink)}
+}
